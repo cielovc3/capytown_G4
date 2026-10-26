@@ -31,6 +31,7 @@ setup(
             'error_odom = capytown_esan.error_odom:main',
             'fake_robot = capytown_esan.fake_robot:main',
             'run_square = capytown_esan.run_square:main',
+            'record_bag = capytown_esan.record_bag:main',
         ],
     },
 )

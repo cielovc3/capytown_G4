@@ -1,0 +1,76 @@
+=== Mon Oct 26 21:40:16 UTC 2026
+ROS_DOMAIN_ID=20
+=== ros2 node list
+/YB_Car_Node
+/odom_corrector
+=== ros2 topic list
+/battery
+/beep
+/cmd_vel
+/imu
+/odom
+/odom_raw
+/odom_reset
+/parameter_events
+/rosout
+/scan
+/servo_s1
+/servo_s2
+/tf
+=== hz /odom_raw
+WARNING: topic [/odom_raw] does not appear to be published yet
+average rate: 11.547
+	min: 0.000s max: 0.323s std dev: 0.07856s window: 13
+average rate: 11.080
+	min: 0.000s max: 0.323s std dev: 0.05990s window: 24
+average rate: 11.232
+	min: 0.000s max: 0.323s std dev: 0.04983s window: 36
+average rate: 11.105
+	min: 0.000s max: 0.323s std dev: 0.04442s window: 48
+average rate: 11.185
+	min: 0.000s max: 0.323s std dev: 0.04038s window: 60
+average rate: 11.090
+	min: 0.000s max: 0.323s std dev: 0.03785s window: 72
+average rate: 11.165
+	min: 0.000s max: 0.323s std dev: 0.03563s window: 84
+average rate: 11.105
+	min: 0.000s max: 0.323s std dev: 0.03414s window: 96
+=== hz /odom
+average rate: 11.569
+	min: 0.075s max: 0.135s std dev: 0.01466s window: 13
+average rate: 11.107
+	min: 0.075s max: 0.136s std dev: 0.01791s window: 24
+average rate: 11.247
+	min: 0.071s max: 0.142s std dev: 0.01781s window: 36
+average rate: 11.099
+	min: 0.071s max: 0.143s std dev: 0.01880s window: 48
+average rate: 11.184
+	min: 0.071s max: 0.143s std dev: 0.01823s window: 60
+average rate: 11.110
+	min: 0.071s max: 0.143s std dev: 0.01858s window: 72
+average rate: 11.169
+	min: 0.071s max: 0.143s std dev: 0.01826s window: 84
+average rate: 11.104
+	min: 0.071s max: 0.143s std dev: 0.01858s window: 96
+=== hz /imu
+average rate: 24.325
+	min: 0.009s max: 0.073s std dev: 0.02611s window: 27
+average rate: 24.594
+	min: 0.008s max: 0.073s std dev: 0.02742s window: 53
+average rate: 24.733
+	min: 0.008s max: 0.073s std dev: 0.02673s window: 79
+average rate: 24.343
+	min: 0.008s max: 0.074s std dev: 0.02707s window: 103
+average rate: 23.908
+	min: 0.008s max: 0.077s std dev: 0.02683s window: 126
+average rate: 23.890
+	min: 0.008s max: 0.077s std dev: 0.02720s window: 151
+average rate: 23.697
+	min: 0.008s max: 0.077s std dev: 0.02712s window: 174
+average rate: 23.827
+	min: 0.008s max: 0.077s std dev: 0.02719s window: 200
+=== rqt_graph
+Captura en setup_rqt_graph.png: /YB_Car_Node publica /odom_raw, que consume /odom_corrector (publica /odom).
+=== rosbag2
+El robot no tiene internet (hotspot RosCar6): no se pudo instalar ros-humble-rosbag2 (Anexo A).
+Los bags se graban con capytown_esan/record_bag.py (rosbag2_py, formato sqlite3; mismo formato de carpeta de bag).

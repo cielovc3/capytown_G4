@@ -16,6 +16,7 @@
   <depend>std_msgs</depend>
   <depend>tf2_ros</depend>
   <depend>sensor_msgs</depend>
+  <depend>tf2_msgs</depend>
 
   <!-- Para error_odom.py (lectura de rosbag2) y graficado -->
   <exec_depend>rosbag2_py</exec_depend>
