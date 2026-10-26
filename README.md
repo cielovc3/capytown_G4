@@ -2,8 +2,8 @@
 
 | Campo | Valor |
 |---|---|
-| Sección | |
-| Variantes (calibración / validación) | |
+| Sección |S-003  |
+| Variantes (calibración / validación) | A1 / A2 |
 | ROS_DOMAIN_ID | 20 |
 | r final [m] | |
 | b_eff final [m] | |
@@ -25,9 +25,11 @@
 
 ## Contenido
 - `config/wheel_params.yaml` — r y b_eff calibrados
-- `linea_recta.csv`, `calibration_log.csv`, `validacion.csv`, `setup_log.txt`
-- `bags/` — rc0_recta_cal, rc0_giro_cal, rc0_recta_val, rc0_giro_val
+- `linea_recta.csv`, `calibration_log.csv`, `validacion.csv`, `setup_log.txt`, setup_rqt_graph.png.
+- `bags/` — rc0_recta, rc0_giro, rc0_val_recta, rc0_val_gir
 - `capytown_esan/plot_odom.py` y `plots/`
-- `informe_rc0.pdf`
+- `informe.pdf`
 
 Documentación original del paquete: `docs_paquete.md`
+
+ Los bags se grabaron con `capytown_esan/record_bag.py` (rosbag2_py) porque el robot no tiene internet para instalar `ros2 bag`.
