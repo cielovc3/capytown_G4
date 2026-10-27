@@ -7,7 +7,7 @@
 | ROS_DOMAIN_ID | 20 |
 | r final [m] | 0.03114|
 | b_eff final [m] | |
-| W medido con regla [m] | |
+| W medido con regla [m] |0.1335|
 
 ## Integrantes y roles
 | Integrante | Rol |
