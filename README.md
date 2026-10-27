@@ -5,7 +5,7 @@
 | Sección |S-003  |
 | Variantes (calibración / validación) | A1 / A2 |
 | ROS_DOMAIN_ID | 20 |
-| r final [m] | |
+| r final [m] | 0.03114|
 | b_eff final [m] | |
 | W medido con regla [m] | |
 
