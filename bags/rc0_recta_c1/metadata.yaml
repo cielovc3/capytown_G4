@@ -1,0 +1,44 @@
+rosbag2_bagfile_information:
+  version: 5
+  storage_identifier: sqlite3
+  duration:
+    nanoseconds: 17369872508
+  starting_time:
+    nanoseconds_since_epoch: 1793058809887210600
+  message_count: 1075
+  topics_with_message_count:
+    - topic_metadata:
+        name: /tf
+        type: tf2_msgs/msg/TFMessage
+        serialization_format: cdr
+        offered_qos_profiles: ""
+      message_count: 388
+    - topic_metadata:
+        name: /cmd_vel
+        type: geometry_msgs/msg/Twist
+        serialization_format: cdr
+        offered_qos_profiles: ""
+      message_count: 105
+    - topic_metadata:
+        name: /odom_raw
+        type: nav_msgs/msg/Odometry
+        serialization_format: cdr
+        offered_qos_profiles: ""
+      message_count: 194
+    - topic_metadata:
+        name: /odom
+        type: nav_msgs/msg/Odometry
+        serialization_format: cdr
+        offered_qos_profiles: ""
+      message_count: 388
+  compression_format: ""
+  compression_mode: ""
+  relative_file_paths:
+    - rc0_recta_c1_0.db3
+  files:
+    - path: rc0_recta_c1_0.db3
+      starting_time:
+        nanoseconds_since_epoch: 1793058809887210600
+      duration:
+        nanoseconds: 17369872508
+      message_count: 1075
