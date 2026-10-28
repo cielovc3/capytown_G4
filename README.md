@@ -6,7 +6,7 @@
 | Variantes (calibración / validación) | A1 / A2 |
 | ROS_DOMAIN_ID | 20 |
 | r final [m] | 0.03114|
-| b_eff final [m] | |
+| b_eff final [m] |0.2172|
 | W medido con regla [m] |0.1335|
 
 ## Integrantes y roles
@@ -33,3 +33,5 @@
 Documentación original del paquete: `docs_paquete.md`
 
  Los bags se grabaron con `capytown_esan/record_bag.py` (rosbag2_py) porque el robot no tiene internet para instalar `ros2 bag`.
+ 
+  Nota: se reemplazaron el motor y una llanta por una falla mecánica. La calibración de b_eff se rehízo con el hardware nuevo (calibration_log.csv); el historial con el motor anterior está en calibration_log_hw_anterior.csv. r se verificó tras el cambio (c8, c9 en linea_recta.csv) y no requirió ajuste. Ademas, se tuvo que cambiar la bateria del robot, lo que afecta a toda la medicion.
