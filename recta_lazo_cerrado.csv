@@ -1,0 +1,2 @@
+corrida,configuracion,d_objetivo_cm,d_real_cm,d_odom_cm,error_vs_objetivo_pct,desvio_lateral_cm
+cl1,odom kp=2.0,100,99.0,100.4,1.00,1.0
