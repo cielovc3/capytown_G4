@@ -2,35 +2,35 @@ rosbag2_bagfile_information:
   version: 5
   storage_identifier: sqlite3
   duration:
-    nanoseconds: 32231642129
+    nanoseconds: 41287150123
   starting_time:
-    nanoseconds_since_epoch: 1793227472361187204
-  message_count: 1286
+    nanoseconds_since_epoch: 1793316600411554824
+  message_count: 1579
   topics_with_message_count:
     - topic_metadata:
         name: /tf
         type: tf2_msgs/msg/TFMessage
         serialization_format: cdr
         offered_qos_profiles: ""
-      message_count: 359
+      message_count: 450
     - topic_metadata:
         name: /cmd_vel
         type: geometry_msgs/msg/Twist
         serialization_format: cdr
         offered_qos_profiles: ""
-      message_count: 214
+      message_count: 229
     - topic_metadata:
         name: /odom_raw
         type: nav_msgs/msg/Odometry
         serialization_format: cdr
         offered_qos_profiles: ""
-      message_count: 354
+      message_count: 450
     - topic_metadata:
         name: /odom
         type: nav_msgs/msg/Odometry
         serialization_format: cdr
         offered_qos_profiles: ""
-      message_count: 359
+      message_count: 450
   compression_format: ""
   compression_mode: ""
   relative_file_paths:
@@ -38,7 +38,7 @@ rosbag2_bagfile_information:
   files:
     - path: rc0_giro_0.db3
       starting_time:
-        nanoseconds_since_epoch: 1793227472361187204
+        nanoseconds_since_epoch: 1793316600411554824
       duration:
-        nanoseconds: 32231642129
-      message_count: 1286
+        nanoseconds: 41287150123
+      message_count: 1579
