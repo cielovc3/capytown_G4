@@ -32,6 +32,7 @@ setup(
             'fake_robot = capytown_esan.fake_robot:main',
             'run_square = capytown_esan.run_square:main',
             'record_bag = capytown_esan.record_bag:main',
+            'plot_odom = capytown_esan.plot_odom:main',
         ],
     },
 )
