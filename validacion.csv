@@ -1,1 +1,4 @@
-variante,prueba,valor_real,valor_odom,error_pct
+prueba,variante,r_m,b_eff_m,valor_odom,valor_real,unidad,error_pct,desvio_lateral_cm
+val_recta_1,A2,0.03114,0.2296,93.6,96.9,cm,3.41,0.1
+val_recta_2,A2,0.03114,0.2296,94.0,97.0,cm,3.09,-0.05
+val_giro,A2,0.03114,0.2296,360,363,deg,0.83,
