@@ -1,0 +1,3 @@
+prueba,parametros,objetivo,real,odom,error_pct
+giro_720,b_eff=0.2237,720,721,,0.14
+recta_1m,r=0.0322 lazo cerrado,100,100.2,100.4,0.20

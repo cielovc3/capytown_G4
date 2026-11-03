@@ -1,0 +1,4 @@
+intento,b_eff_m,objetivo_deg,real_deg,error_deg
+g720_4,0.2237,720,721,1
+g720_5,0.2237,720,711,-9
+g720_6,0.2237,720,725,5
