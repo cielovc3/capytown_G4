@@ -10,3 +10,15 @@ A_manual,simulador,high,,,,,,,Hipótesis teórica: con ruido alto el deslizamien
 2d,simulador,low,,,,10.0,0.0,0.8,Con menos acción derivativa podría reaparecer un pequeño sobreimpulso.,,,,Terminó. Ganancias elegidas para el giro en simulador.,,,1.10,,0.00,0.30
 2e,simulador,low,,,,10.0,0.0,0.4,Al bajar más Kd el carrito podría volver a pasarse de 90°.,,,,Terminó.,,,0.97,,1.27,0.36
 2f,simulador,low,,,,10.0,0.2,0.4,La integral podría reducir el error final y aumentar el sobreimpulso.,,,,Terminó.,,,1.20,,3.70,0.75
+exp3a_low_run1,simulador,low,,,,,,,Cierre odom ~15-25 cm y real ~25-40 cm por deriva en lazo abierto y empuje del piso,23.6,21.4,360.9,Lazo abierto 10s por lado (yaw odom 358.4 deg),,,,,,
+exp3a_low_run2,simulador,low,,,,,,,Cierre odom ~15-25 cm y real ~25-40 cm por deriva en lazo abierto y empuje del piso,13.7,22.7,362.7,Lazo abierto 10s por lado (yaw odom 356.9 deg),,,,,,
+exp3a_low_run3,simulador,low,,,,,,,Cierre odom ~15-25 cm y real ~25-40 cm por deriva en lazo abierto y empuje del piso,2.0,33.9,360.5,Lazo abierto 10s por lado (yaw odom 362.0 deg),,,,,,
+exp3b_low_run1,simulador,low,3.0,0.0,4.0,10.0,0.0,0.8,Cierre real mayor al de odom (odom ~1 cm vs real ~20-30 cm) porque /odom no ve el piso,1.4,15.5,350.5,PID con bias_w=0.03 (yaw odom 359.8 deg),,,,,,
+exp3b_low_run2,simulador,low,3.0,0.0,4.0,10.0,0.0,0.8,Cierre real mayor al de odom (odom ~1 cm vs real ~20-30 cm) porque /odom no ve el piso,0.3,28.8,360.9,PID con bias_w=0.03 (yaw odom 360.4 deg),,,,,,
+exp3b_low_run3,simulador,low,3.0,0.0,4.0,10.0,0.0,0.8,Cierre real mayor al de odom (odom ~1 cm vs real ~20-30 cm) porque /odom no ve el piso,1.2,28.6,369.6,PID con bias_w=0.03 (yaw odom 359.7 deg),,,,,,
+exp3c_low_run1,simulador,low,3.0,0.5,4.0,10.0,0.0,0.8,Ki corrige el sesgo en /odom (~1 cm) pero el cierre real seguira en ~20-35 cm por ruido del piso,0.9,61.2,371.0,PID+Ki con bias_w=0.05 (yaw odom 360.3 deg),,,,,,
+exp3c_low_run2,simulador,low,3.0,0.5,4.0,10.0,0.0,0.8,Ki corrige el sesgo en /odom (~1 cm) pero el cierre real seguira en ~20-35 cm por ruido del piso,0.7,20.7,353.2,PID+Ki con bias_w=0.05 (yaw odom 359.9 deg),,,,,,
+exp3c_low_run3,simulador,low,3.0,0.5,4.0,10.0,0.0,0.8,Ki corrige el sesgo en /odom (~1 cm) pero el cierre real seguira en ~20-35 cm por ruido del piso,0.3,9.3,366.7,PID+Ki con bias_w=0.05 (yaw odom 359.9 deg),,,,,,
+exp3a_med,simulador,medium,,,,,,,Con noise medium el error real sube (>45 cm) y el yaw deriva fuertemente,21.5,50.8,327.2,Estres lazo abierto (yaw odom 357.1 deg),,,,,,
+exp3b_med,simulador,medium,3.0,0.0,4.0,10.0,0.0,0.8,Odom cierra <2 cm pero el cierre real sube a ~35-50 cm por empuje de 0.04 m/s,0.3,37.2,355.2,Estres PID con bias_w=0.03 (yaw odom 359.7 deg),,,,,,
+exp3c_med,simulador,medium,3.0,0.5,4.0,10.0,0.0,0.8,Odom cierra <2 cm pero el cierre real sube a ~35-50 cm por empuje de 0.04 m/s,0.3,37.3,336.7,Estres PID+Ki con bias_w=0.05 (yaw odom 361.8 deg),,,,,,
