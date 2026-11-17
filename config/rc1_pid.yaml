@@ -1,0 +1,17 @@
+﻿odom_corrector:
+  ros__parameters:
+    wheel_radius: 0.0322
+    wheel_separation: 0.2307
+
+cuadrado_controller:
+  ros__parameters:
+    odom_topic: "/odom"
+    bias_w: 0.0
+    kp: 1.8
+    ki: 0.0
+    kd: 1.5
+    kp_yaw: 4.5
+    ki_yaw: 0.0
+    kd_yaw: 0.8
+    linear_speed: 0.10
+    max_angular: 0.75

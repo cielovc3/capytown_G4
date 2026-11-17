@@ -1,0 +1,44 @@
+rosbag2_bagfile_information:
+  version: 5
+  storage_identifier: sqlite3
+  duration:
+    nanoseconds: 71620844717
+  starting_time:
+    nanoseconds_since_epoch: 1793341760406059402
+  message_count: 4056
+  topics_with_message_count:
+    - topic_metadata:
+        name: /tf
+        type: tf2_msgs/msg/TFMessage
+        serialization_format: cdr
+        offered_qos_profiles: ""
+      message_count: 797
+    - topic_metadata:
+        name: /cmd_vel
+        type: geometry_msgs/msg/Twist
+        serialization_format: cdr
+        offered_qos_profiles: ""
+      message_count: 1684
+    - topic_metadata:
+        name: /odom_raw
+        type: nav_msgs/msg/Odometry
+        serialization_format: cdr
+        offered_qos_profiles: ""
+      message_count: 778
+    - topic_metadata:
+        name: /odom
+        type: nav_msgs/msg/Odometry
+        serialization_format: cdr
+        offered_qos_profiles: ""
+      message_count: 797
+  compression_format: ""
+  compression_mode: ""
+  relative_file_paths:
+    - bag_cuadrado_3b_real_run_0.db3
+  files:
+    - path: bag_cuadrado_3b_real_run_0.db3
+      starting_time:
+        nanoseconds_since_epoch: 1793341760406059402
+      duration:
+        nanoseconds: 71620844717
+      message_count: 4056
