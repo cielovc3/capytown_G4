@@ -22,3 +22,11 @@ exp3c_low_run3,simulador,low,3.0,0.5,4.0,10.0,0.0,0.8,Ki corrige el sesgo en /od
 exp3a_med,simulador,medium,,,,,,,Con noise medium el error real sube (>45 cm) y el yaw deriva fuertemente,21.5,50.8,327.2,Estres lazo abierto (yaw odom 357.1 deg),,,,,,
 exp3b_med,simulador,medium,3.0,0.0,4.0,10.0,0.0,0.8,Odom cierra <2 cm pero el cierre real sube a ~35-50 cm por empuje de 0.04 m/s,0.3,37.2,355.2,Estres PID con bias_w=0.03 (yaw odom 359.7 deg),,,,,,
 exp3c_med,simulador,medium,3.0,0.5,4.0,10.0,0.0,0.8,Odom cierra <2 cm pero el cierre real sube a ~35-50 cm por empuje de 0.04 m/s,0.3,37.3,336.7,Estres PID+Ki con bias_w=0.05 (yaw odom 361.8 deg),,,,,,
+giro90_real_run2,real,,,,,10.0,0.0,0.8,En el robot real la inercia y friccion pueden causar un ligero sobreimpulso respecto al simulador,,,,Giro 90 real calibrado (89.0 deg medidos con transportador),,,2.77,,9.24,1.19
+recta_1d_real_run1,real,,3.0,0.5,4.0,,,,Con ganancias del simulador (Ki=0.5) el windup por friccion inicial desviara al robot,,13.5,-6.0,Ganancias de simulador provocaron sobrecorreccion por Ki,8.71,14.63,,13.60,,
+recta_1d_real_run2,real,,3.0,0.05,2.5,,,,Reducir Ki a 0.05 y Kd a 2.5 evitara el windup y mejorara el seguimiento de linea,,12.0,-2.9,Re-sintonia PID en recta (avance real 204 cm),5.22,10.00,,7.06,,
+recta_1d_real_run3,real,,3.0,0.05,2.5,,,,Con wheel_radius=0.0322 y wheel_separation=0.2307 cerrara dentro de <=5 cm,,0.0,-1.0,Cumple criterio E6: error fisico final 0.0 cm en 200 cm,5.15,10.00,,7.90,,
+cuadrado_3a_real_run1,real,,,,,,,,En lazo abierto la deriva acumulada en 4 esquinas superara los 50 cm,60.20,65.0,355.53,Cuadrado 3A lazo abierto en robot real,12.75,,,,,
+cuadrado_3b_real_run1,real,,2.0,0.0,1.5,4.5,0.0,0.8,El control PID reducira el error de cierre a la mitad respecto a lazo abierto,13.09,30.0,361.20,Cuadrado 3B PID corrida 1 (desfase fisico final 2 deg),3.18,,,,,
+cuadrado_3b_real_run2,real,,1.8,0.0,1.5,4.5,0.0,0.8,Suavizar Kp a 1.8 con wheel_separation=0.2307 reducira el patinaje lateral y cerrara <=25 cm,13.65,19.0,360.44,Cuadrado 3B PID corrida 2 (cierre real 19.0 cm y 13 deg),2.99,,,,,
+cuadrado_3b_real_run3,real,,1.8,0.0,1.5,4.5,0.0,0.8,Manteniendo ganancias suaves el cierre fisico repetira <=25 cm cumpliendo E7,4.20,20.0,361.14,Cuadrado 3B PID corrida 3 (promedio real 3B = 23.0 cm <= 25 cm),2.87,,,,,
