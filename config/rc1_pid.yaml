@@ -1,4 +1,10 @@
 ﻿# === GANANCIAS DEL SIMULADOR (Referencia) ===
+sim_recta_controller:
+  ros__parameters:
+    kp: 3.0
+    ki: 0.5
+    kd: 4.0
+
 sim_cuadrado_controller:
   ros__parameters:
     odom_topic: "/odom"
@@ -17,6 +23,12 @@ odom_corrector:
   ros__parameters:
     wheel_radius: 0.0322
     wheel_separation: 0.2307
+
+recta_controller:
+  ros__parameters:
+    kp: 3.0
+    ki: 0.05
+    kd: 2.5
 
 cuadrado_controller:
   ros__parameters:
