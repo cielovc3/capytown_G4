@@ -26,3 +26,8 @@ Error final: 0.76°
 Observación: al añadir Kd desapareció el sobreimpulso observado en 2b.
 
 2e — Kp=10.0, Ki=0.0, Kd=0.4. Terminó: sí. Sobreimpulso: 1.27 %. Asentamiento: 0.97 s. Error final: 0.36°.
+
+### Calculo de error acumulado (1 grado de desvio en yaw)
+Si el robot sufre un error de rumbo de 1 grado y avanza 2 metros en linea recta, el desvio lateral en ese tramo es:
+`Desvio = L * tan(theta) = 2.0 * tan(1°) ≈ 0.035 m = 3.5 cm`
+Dado que el cuadrado tiene 4 lados y 4 giros, si el error sistematico de 1 grado persiste en la misma direccion, los desvios laterales se cancelan parcialmente alrededor del recorrido. El calculo final resulta en un error de cierre real de **9.79 cm** y un rumbo final desviado en **4°**.
