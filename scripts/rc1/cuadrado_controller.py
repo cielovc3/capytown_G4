@@ -77,7 +77,8 @@ class CuadradoController(Node):
         self.runner = Runner(self.p)
         self.pose = None                      # (x, y, yaw) del ultimo /odom
         self.last_rx = self.get_clock().now()
-        self.last_stamp = self.get_clock().now()
+        self.stamp_prev = None                # hora (s) del /odom anterior, sacada del header
+        self.cmd = Twist()                    # ultimo comando calculado (lo republica el timer)
         self.reported = False
 
         self.csv_file = None
@@ -94,32 +95,33 @@ class CuadradoController(Node):
         self.get_logger().info(
             f"cuadrado_controller listo: {self.p.experimento} ({self.p.controlador}) "
             f"kp={self.p.kp} ki={self.p.ki} kd={self.p.kd}  v={self.p.v} m/s. Esperando /odom...")
-
     def on_odom(self, msg):
+        """Llega una pose NUEVA: aqui (y solo aqui) se calcula el PID."""
         p = msg.pose.pose
         self.pose = (p.position.x, p.position.y, yaw_from_quat(p.orientation))
         self.last_rx = self.get_clock().now()
 
-    def control_loop(self):
-        now = self.get_clock().now()
-        dt = (now - self.last_stamp).nanoseconds * 1e-9
-        self.last_stamp = now
+        # dt real entre dos /odom, con la hora del header (no la del timer)
+        stamp = msg.header.stamp.sec + msg.header.stamp.nanosec * 1e-9
+        if self.stamp_prev is None:
+            self.stamp_prev = stamp
+            return
+        dt = stamp - self.stamp_prev
+        self.stamp_prev = stamp
         if dt <= 0.0:
             return
+        dt = min(max(dt, 0.03), 0.30)   # limita huecos raros (se midieron hasta 0.31 s)
+        self.step(dt)
 
-        # Seguridad: sin odometria reciente => frenar (no repetir la ultima orden)
-        age = (now - self.last_rx).nanoseconds * 1e-9
-        if self.pose is None or age > self.timeout:
-            self.pub.publish(Twist())
-            return
-
+    def step(self, dt):
+        """Un paso del controlador con la pose recien llegada."""
         x, y, yaw = self.pose
         v, w, info = self.runner.update(x, y, yaw, dt)
 
-        cmd = Twist()
-        cmd.linear.x = float(v)
-        cmd.angular.z = float(w)
-        self.pub.publish(cmd)
+        self.cmd = Twist()
+        self.cmd.linear.x = float(v)
+        self.cmd.angular.z = float(w)
+        self.pub.publish(self.cmd)
         self.pub_line.publish(Float32(data=float(info["e_line"])))
         self.pub_yaw.publish(Float32(data=float(info["e_yaw"])))
 
@@ -134,6 +136,14 @@ class CuadradoController(Node):
                 f"FIN. error de cierre = {info['closure'] * 100:.1f} cm, "
                 f"yaw acumulado = {math.degrees(info['yaw_total']):.1f} deg, "
                 f"tiempo = {self.runner.t:.1f} s")
+
+    def control_loop(self):
+        """Timer a 30 Hz: ya NO calcula. Solo vigila y republica el ultimo comando."""
+        age = (self.get_clock().now() - self.last_rx).nanoseconds * 1e-9
+        if self.pose is None or age > self.timeout:
+            self.pub.publish(Twist())          # sin odometria reciente => frenar
+            return
+        self.pub.publish(self.cmd)
 
     def close(self):
         if self.csv_file:
