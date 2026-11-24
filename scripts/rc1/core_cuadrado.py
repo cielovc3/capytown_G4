@@ -99,7 +99,8 @@ class Params:
     deadband: float = 0.005         # m, zona muerta del bang-bang
     line_offset: float = 0.0        # m, arranca a la izquierda de la linea
     bias_w: float = 0.0             # rad/s, sesgo de motores inyectado
-    yaw_tol: float = math.radians(2.0)
+    yaw_tol: float = math.radians(1.0)  # D2: giro mas fino (antes 2 deg)
+    t_asentar: float = 0.5          # D2: s quieto entre el giro y el siguiente lado
     settle_time: float = 0.3        # s dentro de la tolerancia para dar el giro por hecho
     turn_w: float = 0.8             # rad/s, giro del lazo abierto
     turn_scale: float = 1.0         # calibracion del giro (1/chi): alarga el tiempo de giro en lazo abierto
@@ -124,7 +125,8 @@ class Runner:
         self.x0, self.y0, self.yaw0 = x, y, yaw
         self.sx, self.sy = x, y            # inicio del lado actual
         self.k = 0                         # giros terminados
-        self.yaw_obj = yaw                 # rumbo del lado actual
+        self.yaw_obj = yaw                 # rumbo IDEAL del lado actual (referencia de los giros)
+        self.yaw_linea = yaw               # D2: rumbo MEDIDO al arrancar el lado (referencia de la recta)
         self.yaw_target = yaw
         self.yaw_prev = yaw
         self.t_state = 0.0
@@ -151,7 +153,7 @@ class Runner:
         e_line = e_yaw = 0.0
 
         if self.state == "AVANZA":
-            psi = self.yaw_obj
+            psi = self.yaw_linea
             dx, dy = x - self.sx, y - self.sy
             s = dx * math.cos(psi) + dy * math.sin(psi)      # avance sobre la linea
             d = -dx * math.sin(psi) + dy * math.cos(psi)     # + = a la izquierda
@@ -167,7 +169,15 @@ class Runner:
                 finished = s >= p.side
             if finished:
                 self._side_done()
-
+        elif self.state == "ASENTAR":
+            # D2: quieto hasta que el robot deje de rotar; luego el lado arranca
+            # como el primero: linea anclada a la pose y rumbo MEDIDOS ahora.
+            if self.t_state >= p.t_asentar:
+                self.sx, self.sy = x, y
+                self.yaw_linea = yaw
+                self.pid_line.reset()
+                self.state = "AVANZA"
+                self.t_state = 0.0
         elif self.state == "GIRA":
             e_yaw = normalize(self.yaw_target - yaw)
             if p.experimento == "cuadrado_abierto":
@@ -185,7 +195,7 @@ class Runner:
                 self.done = True
                 self.closure_error = math.hypot(x - self.x0, y - self.y0)
             v = w = 0.0
-        else:
+        elif self.state != "ASENTAR":
             w = clamp(w, -p.max_w, p.max_w) + p.bias_w
 
         info = dict(state=self.state, lado=self.k, e_line=e_line, e_yaw=e_yaw,
@@ -204,16 +214,15 @@ class Runner:
         self.pid_yaw.reset()
 
     def _turn_done(self, x, y):
-        """Termino un giro de 90 deg: el siguiente lado arranca desde aqui."""
+        """Termino un giro de 90 deg: antes del siguiente lado, ASENTAR (D2)."""
         self.k += 1
         self.yaw_obj = self.yaw_target
         if self.p.experimento == "giro90" or self.k >= self.p.n_sides:
             self.state = "FIN"
             return
-        self.sx, self.sy = x, y
-        self.state = "AVANZA"
+        self.state = "ASENTAR"
         self.t_state = 0.0
-        self.pid_line.reset()
+        
 
 
 # --------------------------------------------------------------------------
