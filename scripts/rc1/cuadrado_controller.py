@@ -29,7 +29,7 @@ Al terminar publica Twist() en cero e imprime el error de cierre.
 """
 import csv
 import math
-
+import time
 import rclpy
 from rclpy.node import Node
 from nav_msgs.msg import Odometry
@@ -151,17 +151,25 @@ class CuadradoController(Node):
 
 
 def main(args=None):
-    rclpy.init(args=args)
+    # Sin el manejador de Ctrl+C de rclpy: asi el contexto sigue valido y el freno
+    # SI se publica (antes fallaba con "publisher's context is invalid").
+    try:
+        from rclpy.signals import SignalHandlerOptions
+        rclpy.init(args=args, signal_handler_options=SignalHandlerOptions.NO)
+    except (ImportError, TypeError):
+        rclpy.init(args=args)
     node = CuadradoController()
     try:
         rclpy.spin(node)
     except KeyboardInterrupt:
-        pass
+        node.get_logger().info("Ctrl+C: frenando...")
     finally:
-        node.pub.publish(Twist())       # frena al salir
+        for _ in range(10):             # 0.5 s de freno, por si se pierde un mensaje
+            node.pub.publish(Twist())
+            time.sleep(0.05)
         node.close()
         node.destroy_node()
-        rclpy.shutdown()
+        rclpy.try_shutdown()
 
 
 if __name__ == "__main__":
